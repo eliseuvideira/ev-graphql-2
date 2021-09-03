@@ -11,9 +11,24 @@
     "node": ">=14"
   },
   "repository": "git@github.com:eliseuvideira/ev-graphql-2.git",
-  "dependencies": {},
-  "devDependencies": {},
-  "peerDependencies": {},
+  "dependencies": {
+    "@graphql-tools/schema": "^8.2.0",
+    "@graphql-tools/utils": "^8.2.1",
+    "@types/graphql-upload": "^8.0.7",
+    "graphql-upload": "^12.0.0"
+  },
+  "devDependencies": {
+    "apollo-server-core": "^3.3.0",
+    "apollo-server-express": "^3.3.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.2"
+  },
+  "peerDependencies": {
+    "apollo-server-core": ">=3.3",
+    "apollo-server-express": ">=3.3",
+    "express": ">=4.17",
+    "graphql": ">=15.5"
+  },
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "rm -rf lib && yarn build"

@@ -1,11 +1,19 @@
-import { createApollo } from "../src/functions/createApollo";
+const hash = () => "" + Date.now() + Math.random();
 
-describe("createApollo", () => {
-  it("creates an apollo server instance", () => {
+const any = () => ({ [hash()]: hash() } as any);
+
+const _createApollo = any();
+
+jest.mock("../src/functions/createApollo", () => ({
+  createApollo: _createApollo,
+}));
+
+describe("apollo", () => {
+  it("exports createApollo package", () => {
     expect.assertions(1);
 
-    const apollo = createApollo();
+    const exported = require("../src/index");
 
-    expect(apollo).toBeDefined();
+    expect(exported).toEqual({ createApollo: _createApollo });
   });
 });
