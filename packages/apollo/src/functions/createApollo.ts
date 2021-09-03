@@ -1,5 +1,6 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { ApolloServer, ExpressContext } from "apollo-server-express";
+import { Apollo } from "../types/Apollo";
 import { CreateApolloProps } from "../types/CreateApolloProps";
 import { createMiddleware } from "./createMiddleware";
 import { formatError } from "./formatError";
@@ -9,7 +10,7 @@ export const createApollo = <T extends ExpressContext = ExpressContext>({
   resolvers,
   context,
   ...props
-}: CreateApolloProps<T>) => {
+}: CreateApolloProps<T>): Apollo => {
   const schema = makeExecutableSchema({
     typeDefs,
     resolvers,
