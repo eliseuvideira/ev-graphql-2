@@ -1,5 +1,5 @@
 import { ExpressContext } from "apollo-server-express";
-import { Resolver } from "../types/Resolver";
+import { ResolverFn } from "../types/ResolverFn";
 
 export const createResolver =
   <T extends ExpressContext = ExpressContext>() =>
@@ -9,8 +9,8 @@ export const createResolver =
     Args = Record<string, never>,
     Context extends T = T,
   >(
-    ...fns: Resolver<Source, Result, Args, Context>[]
-  ): Resolver<Source, Result, Args, Context> =>
+    ...fns: ResolverFn<Source, Result, Args, Context>[]
+  ): ResolverFn<Source, Result, Args, Context> =>
   async (source, args, ctx, info): Promise<Result | void> => {
     for (const fn of fns) {
       const value = await fn(source, args, ctx, info);

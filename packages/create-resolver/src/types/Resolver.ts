@@ -1,8 +1,5 @@
-import { GraphQLResolveInfo } from "graphql";
+import { ResolverFn } from "./ResolverFn";
 
 export type Resolver<Source, Result, Args, Context> = (
-  source: Source,
-  args: Args,
-  context: Context,
-  info: GraphQLResolveInfo,
-) => Promise<Result | void>;
+  ...fns: ResolverFn<Source, Result, Args, Context>[]
+) => ResolverFn<Source, Result, Args, Context>;
