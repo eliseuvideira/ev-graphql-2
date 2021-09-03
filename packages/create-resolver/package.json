@@ -1,5 +1,5 @@
 {
-  "name": "@ev-graphql-2/resolver",
+  "name": "@ev-graphql-2/create-resolver",
   "version": "0.0.0",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
