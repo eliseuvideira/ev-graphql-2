@@ -3,7 +3,8 @@ const hash = () => "" + Date.now() + Math.random();
 const uploadExpress = { [hash()]: hash() };
 
 const post = jest.fn();
-const _router = { post, [hash()]: hash() };
+const use = jest.fn();
+const _router = { post, use, [hash()]: hash() };
 const Router = jest.fn(() => _router);
 const graphqlUploadExpress = jest.fn(() => uploadExpress);
 
@@ -14,7 +15,7 @@ import { createMiddleware } from "../../src/functions/createMiddleware";
 
 describe("createMiddleware", () => {
   it("creates a middleware factory function", () => {
-    expect.assertions(8);
+    expect.assertions(9);
 
     const graphqlMiddleware = { [hash()]: hash() };
 
@@ -32,9 +33,10 @@ describe("createMiddleware", () => {
     expect(getMiddleware).toHaveBeenCalledTimes(1);
     expect(graphqlUploadExpress).toHaveBeenCalledTimes(1);
     expect(graphqlUploadExpress).toHaveBeenCalledWith(options);
-    expect(post).toHaveBeenCalledTimes(2);
-    expect(post.mock.calls[0]).toEqual(["/graphql", uploadExpress]);
-    expect(post.mock.calls[1]).toEqual(["/graphql", graphqlMiddleware]);
+    expect(post).toHaveBeenCalledTimes(1);
+    expect(post).toHaveBeenCalledWith("/graphql", uploadExpress);
+    expect(use).toHaveBeenCalledTimes(1);
+    expect(use).toHaveBeenCalledWith("/graphql", graphqlMiddleware);
     expect(router).toBe(_router);
   });
 });
