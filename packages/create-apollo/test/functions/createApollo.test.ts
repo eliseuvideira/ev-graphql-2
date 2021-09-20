@@ -14,7 +14,8 @@ const _apolloServer = { getMiddleware, start };
 const ApolloServer = jest.fn(() => _apolloServer);
 const graphqlUploadExpress = jest.fn();
 const post = jest.fn();
-const _router = { post, [hash()]: hash() };
+const use = jest.fn();
+const _router = { post, use, [hash()]: hash() };
 const Router = jest.fn(() => _router);
 
 const formatError = any();
