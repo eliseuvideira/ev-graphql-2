@@ -9,7 +9,10 @@ export const createMiddleware =
 
     router.post("/graphql", graphqlUploadExpress(options));
 
-    router.post("/graphql", apolloServer.getMiddleware({ cors: false }));
+    router.use(
+      "/graphql",
+      apolloServer.getMiddleware({ cors: false, path: "/" }),
+    );
 
     return router;
   };
