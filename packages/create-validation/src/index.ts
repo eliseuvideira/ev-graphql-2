@@ -1,3 +1,1 @@
-export const sayHello = () => {
-  console.log("Hello World");
-};
+export { createValidation } from "./functions/createValidation";
