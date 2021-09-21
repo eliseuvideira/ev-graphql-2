@@ -23,7 +23,7 @@ export const createValidation =
         for (const key of Object.keys(parsed)) {
           args[key] = parsed[key];
         }
-      } catch (err) {
+      } catch (err: any) {
         throw new UserInputError(err.message);
       }
     });
