@@ -15,8 +15,10 @@
     "@graphql-tools/schema": "^8.2.0",
     "@graphql-tools/utils": "^8.2.1",
     "@types/graphql-upload": "^8.0.7",
+    "@types/ws": "^8.5.3",
     "graphql-upload": "^12.0.0",
-    "subscriptions-transport-ws": "^0.11.0"
+    "subscriptions-transport-ws": "^0.11.0",
+    "ws": "^8.5.0"
   },
   "devDependencies": {
     "apollo-server-core": "^3.3.0",
