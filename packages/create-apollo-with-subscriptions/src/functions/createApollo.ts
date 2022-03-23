@@ -1,10 +1,8 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { ApolloServer, ExpressContext } from "apollo-server-express";
-import http from "http";
 import { Apollo } from "../types/Apollo";
 import { CreateApolloProps } from "../types/CreateApolloProps";
 import { createMiddleware } from "./createMiddleware";
-import { createSubscriptions } from "./createSubscriptions";
 import { formatError } from "./formatError";
 
 export const createApollo = <T extends ExpressContext = ExpressContext>({
@@ -25,11 +23,7 @@ export const createApollo = <T extends ExpressContext = ExpressContext>({
     ...props,
   });
 
-  const subscriptions = createSubscriptions(server);
-
-  const start = async (httpServer: http.Server) => {
-    await subscriptions(httpServer);
-
+  const start = async () => {
     await server.start();
   };
 
